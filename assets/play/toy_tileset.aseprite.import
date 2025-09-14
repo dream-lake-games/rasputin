@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://eddnpymdmd65"
+path="res://.godot/imported/toy_tileset.aseprite-0450bc1fe54a8e078fb4c100052e1ee8.res"
+
+[deps]
+
+source_file="res://assets/play/toy_tileset.aseprite"
+dest_files=["res://.godot/imported/toy_tileset.aseprite-0450bc1fe54a8e078fb4c100052e1ee8.res"]
+
+[params]
+
