@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c76jjhg47kiyo"
+path="res://.godot/imported/toy_sketch.aseprite-a4ab884d8f84e64891e7ddff3bd839a1.res"
+
+[deps]
+
+source_file="res://assets/play/toy_sketch.aseprite"
+dest_files=["res://.godot/imported/toy_sketch.aseprite-a4ab884d8f84e64891e7ddff3bd839a1.res"]
+
+[params]
+
