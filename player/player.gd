@@ -6,6 +6,7 @@ const MOVE_SPEED = 120.0
 
 func _ready():
 	velocity = Vector2.ZERO
+	print("okay now wth")
 	CameraManager.follow(self)
 
 func handle_input():
@@ -34,21 +35,14 @@ func update_room():
 		if !parent.is_in_group("rooms"):
 			continue
 
-		var player_shape: RectangleShape2D = room_collision_area.shape_owner_get_shape(0, 0) as RectangleShape2D
-		var room_shape: RectangleShape2D = area.shape_owner_get_shape(0, 0) as RectangleShape2D
-		
-		var player_rect: Rect2 = Rect2(
-			room_collision_area.global_position,
-			player_shape.size * 2
-		)
-		var room_rect: Rect2 = Rect2(
-			area.global_position,
-			room_shape.size * 2
-		)
-		
+		var player_shape = room_collision_area.shape_owner_get_shape(0, 0) as RectangleShape2D
+		var player_rect = player_shape.get_rect()
+		var room_shape = area.shape_owner_get_shape(0, 0) as RectangleShape2D
+		var room_rect = room_shape.get_rect()
+
+		@warning_ignore("unsafe_call_argument")
 		var intersection = player_rect.intersection(room_rect)
 		var overlap_area = intersection.get_area()
-		
 		if overlap_area > biggest_area:
 			biggest_area = overlap_area
 			winning_node = parent
