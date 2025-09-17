@@ -1,30 +1,58 @@
 extends CharacterBody2D
 
+@onready var room_collision_area: Area2D = $RoomCollisionArea
+@onready var actionable_marker: Marker2D = $ActionableMarker
+@onready var actionable_area: Area2D = $ActionableMarker/Area2D
+
 const MOVE_SPEED = 120.0
 
-@onready var room_collision_area: Area2D = $RoomCollisionArea
+var input_vector: Vector2 = Vector2.ZERO
+
+#  TODO(probably): Make this derived from some anim state...
+enum Facing {
+	Left,
+	Right,
+	Up,
+	Down,
+}
+var facing: Facing = Facing.Down
 
 func _ready():
 	velocity = Vector2.ZERO
-	print("okay now wth")
 	CameraManager.follow(self)
 
-func handle_input():
-	var input_vector = Vector2.ZERO
-	
+func _unhandled_input(_event):
+	var new_input_vector = Vector2.ZERO
+
 	if Input.is_action_pressed(InputActions.LEFT):
-		input_vector.x -= 1
+		new_input_vector.x -= 1
 	if Input.is_action_pressed(InputActions.RIGHT):
-		input_vector.x += 1
+		new_input_vector.x += 1
 	if Input.is_action_pressed(InputActions.UP):
-		input_vector.y -= 1
+		new_input_vector.y -= 1
 	if Input.is_action_pressed(InputActions.DOWN):
-		input_vector.y += 1
-	
-	if input_vector.length() > 0:
-		input_vector = input_vector.normalized() # Prevent diagonal speed boost
-	
-	velocity = input_vector * MOVE_SPEED
+		new_input_vector.y += 1
+
+	if new_input_vector.length() > 0:
+		new_input_vector = new_input_vector.normalized()
+		
+		if abs(new_input_vector.x) > 0:
+			if new_input_vector.x < 0:
+				facing = Facing.Left
+			else:
+				facing = Facing.Right
+		elif abs(new_input_vector.y) > 0:
+			if new_input_vector.y < 0:
+				facing = Facing.Up
+			else:
+				facing = Facing.Down
+
+	input_vector = new_input_vector
+
+	if Input.is_action_just_pressed(InputActions.START):
+		var actionables = actionable_area.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
 
 func update_room():
 	var biggest_area = 0
@@ -50,10 +78,21 @@ func update_room():
 	if winning_node != null:
 		GameManager.mark_player_in_room(winning_node)
 
+func handle_facing():
+	match facing:
+		Facing.Down:
+			actionable_marker.rotation_degrees = 0
+		Facing.Up:
+			actionable_marker.rotation_degrees = 180
+		Facing.Left:
+			actionable_marker.rotation_degrees = 90
+		Facing.Right:
+			actionable_marker.rotation_degrees = -90
 
 func _physics_process(_delta):
-	handle_input()
+	velocity = input_vector * MOVE_SPEED
 	update_room()
+	handle_facing()
 
 	move_and_slide()
 
