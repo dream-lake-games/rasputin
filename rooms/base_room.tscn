@@ -7,6 +7,7 @@
 size = Vector2(160, 144)
 
 [node name="BaseRoom" type="Node2D" groups=["rooms"]]
+y_sort_enabled = true
 script = ExtResource("1_wr0uh")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

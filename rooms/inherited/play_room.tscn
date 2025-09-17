@@ -19,4 +19,4 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_e6543")
 
 [node name="Chest" parent="." index="2" instance=ExtResource("2_e6543")]
-position = Vector2(14, 40)
+position = Vector2(24, 64)

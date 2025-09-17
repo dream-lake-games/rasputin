@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dixg6kmpnrihs" path="res://camera/camera.tscn" id="3_lnkrt"]
 
 [node name="Castle" type="Node2D"]
+y_sort_enabled = true
 
 [node name="BaseRoom" parent="." instance=ExtResource("1_6e8ye")]
 position = Vector2(192, -16)

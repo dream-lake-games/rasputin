@@ -1,20 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn0hsjupobpw3"]
+[gd_scene load_steps=12 format=4 uid="uid://dn0hsjupobpw3"]
 
 [ext_resource type="PackedScene" uid="uid://chl7uw5qavl8y" path="res://dialogue/actionable.tscn" id="1_agy02"]
+[ext_resource type="Script" uid="uid://de6qot8tnpk1g" path="res://entities/chest/chest.gd" id="1_bbmqp"]
 [ext_resource type="Resource" uid="uid://dh4o5jik8b42n" path="res://dialogue/play.dialogue" id="2_vvkul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvkul"]
-size = Vector2(28, 12)
+size = Vector2(16, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vvkul"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="Animation" id="Animation_vvkul"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bbmqp"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ektp4"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_32syd"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32syd"]
+_data = {
+&"close": SubResource("Animation_32syd"),
+&"idle": SubResource("Animation_vvkul"),
+&"open": SubResource("Animation_bbmqp"),
+&"opened": SubResource("Animation_ektp4")
+}
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_0p1s4"]
+_data = PackedByteArray("AAADAAUAAAABAAAAPAAAACgAAAAiAQAAUklGRhoBAABXRUJQVlA4TA0BAAAvO8AJEC+gqG0bqPzZ9Fcg18ZMUds2UE/+BPobucEg0rYZnfQ5PLwUAUGR/6MFgP/tHiddAILjSJKkRi5wWDDgAPQ4IHXLA+S/L+xEc4X+Ef1n4LaRovYYffCK17P9qfTn81XptgsyksHNR0OX7BY5gU9GkwadwGeOFZji4wQHK0okJSM4WgGYBJzg3kkpz232lrErfbt4yxytfuIs15Ndqf0K3pJT7F1tvEVogb2Qt6jWxlr+uF+VbkeCBNgEGrpkt6gJFmAoAgAJyP8HWS0sAiZA918ZC05Y6C01oHTeIknnLEdJQAJ4TuBOOysYu9L3WcEcpZ9nBNmV8rRgir3raYHQAp0SuHd/VvBoXwA=")
+size_override = Vector2(60, 40)
 
 [node name="Chest" type="Node2D"]
+script = ExtResource("1_bbmqp")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 24.0
-offset_bottom = 16.0
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vvkul")
 
 [node name="Actionable" parent="." instance=ExtResource("1_agy02")]
 dialogue_resource = ExtResource("2_vvkul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
-position = Vector2(12, 22)
-shape = SubResource("RectangleShape2D_vvkul")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vvkul")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_32syd")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_0p1s4")
+hframes = 3
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/chest/assets/chest.aseprite",
+"source_uid": 1885585209938186412
+}
+metadata/_aseprite_wizard_source_file_hash_ = "24753a78898bbf591705134c66f55366"

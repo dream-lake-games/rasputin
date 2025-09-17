@@ -3,14 +3,13 @@ extends CharacterBody2D
 @onready var room_collision_area: Area2D = $RoomCollisionArea
 @onready var actionable_marker: Marker2D = $ActionableMarker
 @onready var actionable_area: Area2D = $ActionableMarker/Area2D
-@onready var animation_player: AnimationPlayer = $Animation/AnimationPlayer
-@onready var sprite: Sprite2D = $Animation/Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite2D
 
 const MOVE_SPEED = 80.0
 
 var input_vector: Vector2 = Vector2.ZERO
 
-#  TODO(probably): Make this derived from some anim state...
 enum Facing {
 	Left,
 	Right,
