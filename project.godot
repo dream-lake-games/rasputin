@@ -15,6 +15,11 @@ run/main_scene="uid://br4nixy1cja1e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[aseprite]
+
+animation/loop/enabled=false
+import/import_plugin/default_automatic_importer="SpriteFrames"
+
 [autoload]
 
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"

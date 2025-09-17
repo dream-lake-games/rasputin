@@ -3,8 +3,10 @@ extends CharacterBody2D
 @onready var room_collision_area: Area2D = $RoomCollisionArea
 @onready var actionable_marker: Marker2D = $ActionableMarker
 @onready var actionable_area: Area2D = $ActionableMarker/Area2D
+@onready var animation_player: AnimationPlayer = $Animation/AnimationPlayer
+@onready var sprite: Sprite2D = $Animation/Sprite2D
 
-const MOVE_SPEED = 120.0
+const MOVE_SPEED = 80.0
 
 var input_vector: Vector2 = Vector2.ZERO
 
@@ -20,6 +22,7 @@ var facing: Facing = Facing.Down
 func _ready():
 	velocity = Vector2.ZERO
 	CameraManager.follow(self)
+	animation_player.animation_finished.connect(on_animation_finished)
 
 func _unhandled_input(_event):
 	var new_input_vector = Vector2.ZERO
@@ -86,8 +89,17 @@ func handle_facing():
 			actionable_marker.rotation_degrees = 180
 		Facing.Left:
 			actionable_marker.rotation_degrees = 90
+			sprite.flip_h = false
 		Facing.Right:
 			actionable_marker.rotation_degrees = -90
+			sprite.flip_h = true
+
+func update_animation():
+	if velocity.length() > 0:
+		if animation_player.current_animation != "walk":
+			animation_player.play("walk")
+	else:
+		animation_player.play("idle")
 
 func _physics_process(_delta):
 	velocity = input_vector * MOVE_SPEED
@@ -95,6 +107,13 @@ func _physics_process(_delta):
 	handle_facing()
 
 	move_and_slide()
+	update_animation()
+
+
+func on_animation_finished(finished: StringName):
+	match finished:
+		_:
+			animation_player.play(finished)
 
 
 func _process(_delta):
