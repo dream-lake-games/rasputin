@@ -4,22 +4,34 @@ const MOVE_SPEED = 120.0
 
 @onready var room_collision_area: Area2D = $RoomCollisionArea
 
+var player_state = 0
+var animation_frame = 0
+
 func _ready():
 	velocity = Vector2.ZERO
 	print("okay now wth")
 	CameraManager.follow(self)
 
 func handle_input():
+	
 	var input_vector = Vector2.ZERO
+	
+	var moving = false
 	
 	if Input.is_action_pressed(InputActions.LEFT):
 		input_vector.x -= 1
+		moving = true
 	if Input.is_action_pressed(InputActions.RIGHT):
 		input_vector.x += 1
+		moving = true
 	if Input.is_action_pressed(InputActions.UP):
 		input_vector.y -= 1
+		moving = true
 	if Input.is_action_pressed(InputActions.DOWN):
 		input_vector.y += 1
+		moving = true
+	
+	change_state(1 if moving else 0)
 	
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized() # Prevent diagonal speed boost
@@ -50,13 +62,29 @@ func update_room():
 	if winning_node != null:
 		GameManager.mark_player_in_room(winning_node)
 
-
 func _physics_process(_delta):
 	handle_input()
 	update_room()
 
 	move_and_slide()
 
+func change_state(s):
+	if s != player_state:
+		animation_frame = 0
+		player_state = s
+
+func player_render():
+	var f = 0
+	if player_state == 0: 
+		# idle
+		f = (int(floor(animation_frame / 15.0)) % 2) * 2
+	else:
+		# walking
+		f = 1 + int(floor(animation_frame / 7.5)) % 4
+		
+	$Sprite2D.frame = f
+
 
 func _process(_delta):
-	pass
+	player_render()
+	animation_frame += _delta * 60
