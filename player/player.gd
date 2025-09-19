@@ -83,14 +83,14 @@ func update_room():
 func handle_facing():
 	match facing:
 		Facing.Down:
-			actionable_marker.rotation_degrees = 0
-		Facing.Up:
 			actionable_marker.rotation_degrees = 180
+		Facing.Up:
+			actionable_marker.rotation_degrees = 0
 		Facing.Left:
-			actionable_marker.rotation_degrees = 90
+			actionable_marker.rotation_degrees = -90
 			sprite.flip_h = false
 		Facing.Right:
-			actionable_marker.rotation_degrees = -90
+			actionable_marker.rotation_degrees = 90
 			sprite.flip_h = true
 
 func update_animation():

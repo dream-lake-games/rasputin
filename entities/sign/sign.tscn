@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8h5h6v37cqlq"]
+
+[ext_resource type="Texture2D" uid="uid://dssfmwj7pvcqn" path="res://entities/sign/assets/sign.png" id="1_a4ovg"]
+[ext_resource type="Script" uid="uid://dsyf61hg1sug6" path="res://entities/sign/sign.gd" id="1_mvabi"]
+[ext_resource type="PackedScene" uid="uid://chl7uw5qavl8y" path="res://dialogue/actionable.tscn" id="3_dx08o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4ovg"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25g7i"]
+size = Vector2(4, 3.5)
+
+[node name="Sign" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_mvabi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_a4ovg")
+offset = Vector2(0, -6)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_a4ovg")
+
+[node name="Actionable" parent="." instance=ExtResource("3_dx08o")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+position = Vector2(0, 1.75)
+shape = SubResource("RectangleShape2D_25g7i")

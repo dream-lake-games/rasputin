@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://debacfqd6nbhw"]
+
+[ext_resource type="Script" uid="uid://b15su13ko00ow" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="Shader" uid="uid://bs3rinytrhxrk" path="res://main/main.gdshader" id="2_pjrb6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53q0u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwkvk"]
+shader = ExtResource("2_pjrb6")
+shader_parameter/delta = 0
+shader_parameter/COLOR_ONE = Color(0.909804, 0.85098, 0.847059, 1)
+shader_parameter/COLOR_TWO = Color(0.929412, 0.678431, 0.721569, 1)
+shader_parameter/COLOR_THREE = Color(0.537255, 0.368627, 0.756863, 1)
+shader_parameter/COLOR_FOUR = Color(0.172549, 0.0862745, 0.290196, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pjrb6"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_53q0u")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(160, 144)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_53q0u")
+offset_right = 160.0
+offset_bottom = 144.0
+color = Color(0.172549, 0.0862745, 0.290196, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_xwkvk")
+offset_right = 160.0
+offset_bottom = 144.0
+texture = SubResource("ViewportTexture_pjrb6")

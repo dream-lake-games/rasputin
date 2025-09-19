@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture2D" format=3]
+
+[resource]
+width = 160
+height = 144
+fill_to = Vector2(1, 1)

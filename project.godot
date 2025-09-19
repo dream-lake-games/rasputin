@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="rasputin"
-run/main_scene="uid://br4nixy1cja1e"
+run/main_scene="uid://vm3l5cow6t6f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,7 @@ BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 GameManager="*res://singletons/game_manager.gd"
 CameraManager="*res://singletons/camera_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+ShaderDeltaManager="*res://singletons/shader_delta_manager.gd"
 
 [display]
 
@@ -94,7 +95,7 @@ escape={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/play.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/play.dialogue", "res://dialogue/outside/first_sign.dialogue")
 
 [layer_names]
 

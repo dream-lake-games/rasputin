@@ -1,0 +1,170 @@
+[gd_scene load_steps=10 format=4 uid="uid://nwq8bre0xe1r"]
+
+[ext_resource type="Shader" uid="uid://6gckm1ap0qtr" path="res://menu/title_rain.gdshader" id="1_ckp2h"]
+[ext_resource type="Script" uid="uid://ctbl7r6arogmp" path="res://menu/title_anim.gd" id="2_ckp2h"]
+
+[sub_resource type="Animation" id="Animation_jb46j"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bgimage/palace:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c33ia"]
+_data = {
+&"default": SubResource("Animation_jb46j")
+}
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_c33ia"]
+_data = PackedByteArray("AAADAAUAAAABAAAAoAAAAJAAAABcAwAAUklGRlQDAABXRUJQVlA4TEcDAAAvn8AjAB+gpm0Dhj+cfgWymQkJiOT/Ac05M4QERDbdQ9GU+Y9fMQgmSJK2PY0cTWOY+Qi9ChxgGFforkqvgz7F0AHCzMlA/wPeh+xMtoPL5AiDYbC7/NfYlvTrH1xG9B+C2zaSJHk2mDpS66nyK3Czq5qNz6b8lPFMmZLH30xv4wJiJebgN/NSnVhMy/xUMquZnkoQt7O0CA4wAW4wqjcgFTa+cfKTp83D6goLafFNUJglcFAI0iEXSAvCo3ifrVAWxDeK92pMUNEMFXfBq1ncFPqJO3QNA3wl8dzWjaAMYMMfLGtHQ6AdJfTI1o+2XVkbTqVBrjpY4qpWtt1imj/ezTTPJ1TooPBQiAomVC0EpsU3VAgUsq1BKFqK97wLJasMNDWMQNuAzJGXUDgMG4TJfiYKXnqEh5SX7qGwD/b0w+QLODsiI7y0kCkobO0bSaXB6ymcfSFREHN5MSKxR7ZF48tVHvaIT/XiBQEcDRHQXUBHpsdLp2R8hS1CCTGSyzFIXfrz/HQPhTdV6etezZmzN2QyXvqQTE5hyyoXLbDu2tagzCEvnZEpKWwRcpCam2/O9zDkxa6K362mzEBWeGnRzgBYCXHkrxQzyJG/pPTvu74U7wJw5A/sxo4ycOQPijVVd1kGdraxo73Mkb9S+xrZQY78nbjcdPPiHY78NT1s7LhyExjy0nSl6eZDCutejPKnKUb50xSj91UXAvRilD9NIeRv3aeN8qcpRvnTFEL+NkOurDUsFnKipkrcMCJuKVrRKNJdsO7GPSpQoYPCQyEqmFC1EJgW39BMqyHdkI5Fn/5NC+oJaB7ceF7hnawwIgwTX8zlvA3RwL7qpGBUh2tQPibhaAqVF6uzqjbk+sR/QhAQt9DwqbhqAgTXZyq+u2DCquoA19eaCZCo0YWkIfPjYQGSjRz4PIz6MSGRUIOjtuHqmyn5I5+u+FBXAr0LWNAnYZX2y11YcNSQ7zKMGF1AM4WJsQLX/IHBUZfADKYgqFjVoDfjRzWgn7YucsPVOCsMfxCOcuxAdMAH9V250o9T4Uttb4GaaFe+BhVM7/YRfMWQQqBgAnySLVJeIjgOdRbciCCCul957fotdByDZ1W3LSCTACgDBAA=")
+size_override = Vector2(160, 144)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckp2h"]
+shader = ExtResource("1_ckp2h")
+shader_parameter/loop_time = 1.0
+shader_parameter/rep_x = 3.0
+shader_parameter/rep_y = 2.0
+shader_parameter/rain_amt = 6.0
+shader_parameter/rain_width = 0.15
+shader_parameter/rain_length = 0.2
+shader_parameter/rain_speed = 4.0
+shader_parameter/theta = 15.0
+shader_parameter/rain_color = Color(0.909804, 0.85098, 0.847059, 1)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ckp2h"]
+_data = PackedByteArray("AAADAAUAAAABAAAAQAEAAJAAAACoBAAAUklGRqAEAABXRUJQVlA4TJQEAAAvP8EjEH/BqLZtJfe74YzpX4ERPYjg7paDbSRJaubZBCWg4BUTR8CymNlGtq3kfsHdKYM26ZCIIYfI+S4gKPJ/tABQtguADyH6cX6sH+cT1ovxCO3D+rA+YZ1CAljkrH0XrlM5duFONIRB+MfU70tcoGgOz7kxOyGVwC5GGq6dT5XwELFjAyEMN16lbmHee8W317EJ05XwfCsLtzSdrIwAzrMZQKBo23bbNuJ7ViC64KX33psA/P/vEfdeKBVpM4roPwVJkhRJkscynYYXXPYXll++Ofmfk/85+Z+T//lva3JyGjMTEjOK2Y5RYyQAFTVduBjwZAExXEbQp9LL4U64R5/uFxKnmLkzaozcFJp6L7qIYMmWwwNkIOKOok+mlzdlS9kmAi9865Kg5KRRbYC8/rlQlKcQ4E5e2gdm3MkoI/pseqk9tVbcvacW7zG4XwaoNkJWjvBUArw5bBhm3D+wDOhz6uVp67tiPtRwp4reSFQkaxKpw54mAB2zMYaycHs3qV5sW6Fi2scSXiIgaLn1rtYCT5dCHhMJ5Z2Oib+cVS9Laxh8LPttYyaepuvP6FETyG+W8CfT6gX7MMPHUnUU4TC3bvW1B8gn3yD912fVi9nT6uKxfKJSgpqB+2yAfPlNEpPqhSYSrf5sS7hZq7VAM4HFtAHy3bdICfc59YKr7zI9cTdr4f8BQDMFm6FEn3I3t2+QWiIm1Qus3p88eK2pT1MNmqnAEulF1eeH5VsE655SL7WL+bWGNw719OzZy/eVWY2Q9ePHtnyb1BIxp16egRjfXPIDlsHnslt8jjN1/pVb29fMqwrrzKiXGw3F1h/LSh+wxCd/a3RoUWtzoBg603yNPIX6p9SLNSzi+usScN/gztc/w+bi0HJEBAtqOSKfMNs0Vf+keqEivBZcixaAzfnQckwEC2o5Ivm2O6marD/m0wutvAEe1Q2B6Z7HsDmfQxZIJJHGLMIMYYcHEawiUMP10mR6KXcyFlEevu0I3Ll7XoCGzyE96BoUUwpgKNLwoRShamI9oM+ll/rmQDu++dgRtGEngKbiOURhxBBLYtrIwCoFakj/+fXyyzcn//O//cnJ7QtRM4vhCIAZYwRK8YZkwUvhR1CNhlHTSvIzdzfLF+5I6NcBKP0/gAAhUF+lBciO5MwYscdKqGkl3CP2bmsEEJItZkRJDhhbMglkpCVHRDeknnCJ8YiVURPL2UWOvaect6w59wuyA8oanq7gcmQSDKJUnbzPOYPm8jKih/YQqGkFO4a/F/BiwP/Abh89vtuv60ZhgYi0EJU0a9qt4cKvUFPLIkIXBGZLrPQSZYGKslD0y1hkmXWiT1pzjojkW0ggIyyD5ATm2caWi2H2l/lyTWbrRUaNEIhhiwqb89Vs42ZnvjNb8Xy45bwD3NfVzfY9GQSDkEWFzB3jPbwHoyaWa/Ci5MPjlu0LCFb8DyRbSKL/mrBgQG0EiE0g9mDUxALvWMsRCFi2L0TJY8kioizagIDzuLBF7MGoiWWfc85LpumXgQVHSMQoy9CQlXlomdpf+7Wb/oz/8s3J/5z8z5/wLA==")
+size_override = Vector2(320, 144)
+
+[sub_resource type="Animation" id="Animation_8kt04"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../title/title:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 1, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ckp2h"]
+_data = {
+&"flicker": SubResource("Animation_8kt04")
+}
+
+[node name="Title" type="Node2D"]
+
+[node name="Bg" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="bgimage" type="Node2D" parent="Bg"]
+metadata/_edit_lock_ = true
+
+[node name="animplayerpalace" type="AnimationPlayer" parent="Bg/bgimage"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_c33ia")
+}
+
+[node name="palace" type="Sprite2D" parent="Bg/bgimage"]
+texture_filter = 1
+position = Vector2(80, 72)
+texture = SubResource("PortableCompressedTexture2D_c33ia")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": ["palace"],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Bg/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://menu/title.aseprite",
+"source_uid": 5899441109616199402
+}
+metadata/_aseprite_wizard_source_file_hash_ = "520ef657dc8833498a26e84711927c13"
+
+[node name="Rain" type="Node2D" parent="Bg"]
+metadata/_edit_lock_ = true
+
+[node name="Rain1" type="ColorRect" parent="Bg/Rain"]
+material = SubResource("ShaderMaterial_ckp2h")
+offset_left = -16.0
+offset_right = 180.0
+offset_bottom = 144.0
+
+[node name="Rain2" type="ColorRect" parent="Bg/Rain"]
+material = SubResource("ShaderMaterial_ckp2h")
+offset_left = -6.0
+offset_top = -10.0
+offset_right = 168.0
+offset_bottom = 134.0
+
+[node name="Rain3" type="ColorRect" parent="Bg/Rain"]
+material = SubResource("ShaderMaterial_ckp2h")
+offset_left = -14.0
+offset_top = -26.0
+offset_right = 194.0
+offset_bottom = 118.0
+
+[node name="title" type="Node2D" parent="."]
+
+[node name="title" type="Sprite2D" parent="title"]
+texture_filter = 1
+position = Vector2(80, 72)
+texture = SubResource("PortableCompressedTexture2D_ckp2h")
+hframes = 2
+script = ExtResource("2_ckp2h")
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": false,
+"output_section": true,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "palace",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "title/title/animplayertitle",
+"scale": "1.0",
+"slice": "",
+"source": "res://menu/title.aseprite",
+"source_uid": 5899441109616199402
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c5a4cc21691c20d813ff795263f24c81"
+
+[node name="animplayertitle" type="AnimationPlayer" parent="title/title"]
+root_node = NodePath("../../../Bg")
+libraries = {
+&"": SubResource("AnimationLibrary_ckp2h")
+}
