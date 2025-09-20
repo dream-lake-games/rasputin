@@ -66,6 +66,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = -2
 
 [node name="DialogueLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_hfvdi")]
 unique_name_in_owner = true

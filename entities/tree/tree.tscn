@@ -1,22 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://chsg1rba571bq"]
+[gd_scene load_steps=2 format=3 uid="uid://chsg1rba571bq"]
 
-[ext_resource type="Texture2D" uid="uid://jy862nqodyte" path="res://rooms/assets/outdoor-tileset.png" id="1_xs1ax"]
+[ext_resource type="TileSet" uid="uid://bhk3f5yelg8e0" path="res://areas/outside_ground_tileset.tres" id="1_xs1ax"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_20x5l"]
-atlas = ExtResource("1_xs1ax")
-region = Rect2(0, 80, 32, 32)
+[node name="Node2D" type="Node2D"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xs1ax"]
-size = Vector2(17, 21)
-
-[node name="Tree" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
-texture = SubResource("AtlasTexture_20x5l")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-0.5, -11.5)
-shape = SubResource("RectangleShape2D_xs1ax")
+[node name="TreeLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_xs1ax")
+metadata/_edit_lock_ = true

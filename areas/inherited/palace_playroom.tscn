@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=4 uid="uid://di5tdjecsoyls"]
 
-[ext_resource type="PackedScene" uid="uid://b0y6s8xrmuvv1" path="res://rooms/base_room.tscn" id="1_i7hxp"]
-[ext_resource type="PackedScene" uid="uid://dn0hsjupobpw3" path="res://entities/chest/chest.tscn" id="2_e6543"]
+[ext_resource type="PackedScene" uid="uid://b0y6s8xrmuvv1" path="res://areas/base_room.tscn" id="1_i7hxp"]
+[ext_resource type="PackedScene" uid="uid://dn0hsjupobpw3" path="res://dialogue/chest/chest.tscn" id="2_e6543"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6543"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy3vp"]
 size = Vector2(160, 144)
 
 [node name="BaseRoom" instance=ExtResource("1_i7hxp")]
@@ -16,7 +16,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Bounds" index="0"]
-shape = SubResource("RectangleShape2D_e6543")
+shape = SubResource("RectangleShape2D_fy3vp")
 
 [node name="Chest" parent="." index="2" instance=ExtResource("2_e6543")]
 position = Vector2(24, 64)

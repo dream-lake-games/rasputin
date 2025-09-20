@@ -1,9 +1,3 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-Nathan: For more information see the online documentation.
+SIGN: This way to Rasputin's Palace
 => END

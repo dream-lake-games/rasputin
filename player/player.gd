@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var actionable_indicator_animation_player: AnimationPlayer = $ActionableIndicator/AnimationPlayer
 
-const MOVE_SPEED = 80.0
+const MOVE_SPEED = 86.0
 
 var input_vector: Vector2 = Vector2.ZERO
 var show_actioning_indicator: bool = true
@@ -22,10 +22,12 @@ var facing: Facing = Facing.Down
 
 
 func _ready():
+	RoomManager.driver_area = room_collision_area
+
 	velocity = Vector2.ZERO
-	CameraManager.follow(self)
 	animation_player.animation_finished.connect(on_animation_finished)
 	actionable_indicator_animation_player.animation_finished.connect(on_actionable_indicator_animation_finished)
+	process_priority = -1
 
 func _unhandled_input(_event):
 	var new_input_vector = Vector2.ZERO

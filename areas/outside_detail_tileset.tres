@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c07h43of0rgs1"]
+
+[ext_resource type="Texture2D" uid="uid://jy862nqodyte" path="res://areas/assets/outdoor-tileset.png" id="1_nwysa"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnwfx"]
+texture = ExtResource("1_nwysa")
+0:5/size_in_atlas = Vector2i(2, 2)
+0:5/0 = 0
+0:5/0/y_sort_origin = 13
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2, 8, -2, 8, 15, -7.5, 15)
+0:5/0/metadata/_better_terrain = {
+&"type": 0
+}
+
+[resource]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_lnwfx")
+metadata/_better_terrain = {
+&"decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
+&"path": "res://addons/better-terrain/icons/Decoration.svg"
+}],
+&"terrains": [["tree", Color(0.119455, 0.94404, 0.4639, 1), 0, [], {
+&"path": ""
+}]],
+&"version": "0.2"
+}

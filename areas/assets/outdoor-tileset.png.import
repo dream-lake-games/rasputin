@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jy862nqodyte"
-path="res://.godot/imported/outdoor-tileset.png-bd5b68d030b7fbf269b9f6dd98b15326.ctex"
+path="res://.godot/imported/outdoor-tileset.png-ce0b57d204cba95b43f76a2d1448b7ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/assets/outdoor-tileset.png"
-dest_files=["res://.godot/imported/outdoor-tileset.png-bd5b68d030b7fbf269b9f6dd98b15326.ctex"]
+source_file="res://areas/assets/outdoor-tileset.png"
+dest_files=["res://.godot/imported/outdoor-tileset.png-ce0b57d204cba95b43f76a2d1448b7ad.ctex"]
 
 [params]
 

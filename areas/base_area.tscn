@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1q7fnxv8bkgy"]
+
+[ext_resource type="PackedScene" uid="uid://dixg6kmpnrihs" path="res://camera/camera.tscn" id="1_iypnt"]
+[ext_resource type="TileSet" uid="uid://3pl4hsgqkvvu" path="res://areas/invisible_wall_tileset.tres" id="1_lhbir"]
+[ext_resource type="Script" uid="uid://de150ryhitnmq" path="res://areas/invisible_wall_tile_map.gd" id="2_lhbir"]
+[ext_resource type="PackedScene" uid="uid://dehdwchxe5hvp" path="res://player/player.tscn" id="2_xyvr2"]
+
+[node name="BaseArea" type="Node2D"]
+y_sort_enabled = true
+
+[node name="GroundTileMap" type="TileMapLayer" parent="."]
+z_index = -1
+y_sort_enabled = true
+
+[node name="DetailTileMap" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+
+[node name="InvisibleWallTileMap" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_lhbir")
+script = ExtResource("2_lhbir")
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Camera" parent="." instance=ExtResource("1_iypnt")]
+
+[node name="Player" parent="." instance=ExtResource("2_xyvr2")]

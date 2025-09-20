@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://br4nixy1cja1e"]
 
-[ext_resource type="PackedScene" uid="uid://di5tdjecsoyls" path="res://rooms/inherited/palace_playroom.tscn" id="1_6e8ye"]
+[ext_resource type="PackedScene" uid="uid://di5tdjecsoyls" path="res://areas/inherited/palace_playroom.tscn" id="1_6e8ye"]
 [ext_resource type="PackedScene" uid="uid://dehdwchxe5hvp" path="res://player/player.tscn" id="2_m038f"]
 [ext_resource type="PackedScene" uid="uid://dixg6kmpnrihs" path="res://camera/camera.tscn" id="3_lnkrt"]
 

@@ -1,17 +1,27 @@
-extends Camera2D
+class_name Camera extends Camera2D
 
 func _ready():
-	pass
+	GameManager.camera = self
 
-func _physics_process(_delta):
-	if CameraManager._following == null:
+func update_position():
+	position = RoomManager.driver_area.global_position.round()
+	var active_rect = RoomManager.get_active_rect()
+
+
+	if active_rect == Rect2():
 		return
-	self.position = CameraManager._following.position
+	
+	var view_port_size = get_viewport_rect().size
+
+	var min_x = active_rect.position.x + view_port_size.x / 2.0
+	var max_x = active_rect.position.x + active_rect.size.x - view_port_size.x / 2.0
+	position.x = clamp(position.x, min_x, max_x)
+	var min_y = active_rect.position.y + view_port_size.y / 2.0
+	var max_y = active_rect.position.y + active_rect.size.y - view_port_size.y / 2.0
+	position.y = clamp(position.y, min_y, max_y)
 
 func _process(_delta):
-	if CameraManager._bounds == Rect2():
-		return
-	self.limit_left = int(CameraManager._bounds.position.x)
-	self.limit_top = int(CameraManager._bounds.position.y)
-	self.limit_right = int(CameraManager._bounds.position.x + CameraManager._bounds.size.x)
-	self.limit_bottom = int(CameraManager._bounds.position.y + CameraManager._bounds.size.y)
+	if RoomManager.driver_area != null:
+		update_position()
+
+	pass
