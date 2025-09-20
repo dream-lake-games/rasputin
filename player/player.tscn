@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dehdwchxe5hvp"]
+[gd_scene load_steps=15 format=4 uid="uid://dehdwchxe5hvp"]
 
 [ext_resource type="Script" uid="uid://bl2gmmfd17ai4" path="res://player/player.gd" id="1_oul6g"]
 
@@ -9,12 +9,42 @@ size = Vector2(1, 1)
 radius = 9.0
 height = 18.0
 
+[sub_resource type="Animation" id="Animation_yw30f"]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ActionableIndicator/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 1, 1, 2, 2, 2]
+}
+
 [sub_resource type="Animation" id="Animation_oul6g"]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_g1dw6"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ActionableIndicator/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -41,7 +71,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g1dw6"]
 _data = {
+&"A": SubResource("Animation_yw30f"),
 &"idle": SubResource("Animation_oul6g"),
+&"none": SubResource("Animation_g1dw6"),
 &"walk": SubResource("Animation_rkbax")
 }
 
@@ -51,6 +83,46 @@ size_override = Vector2(60, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
 size = Vector2(12, 9)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_rkbax"]
+_data = PackedByteArray("AAADAAUAAAABAAAAEAAAABAAAACuAAAAUklGRqYAAABXRUJQVlA4TJoAAAAvD8ADEF+gpo0kZ/mzOThX5yr+gzHTtk0qlT+CkuvXnWNgNGCSVf5/DioVq11AUOT/aAHAM8CrT7wpAqhWdfX/ZAMwGNW2reRFQAr8DwRgEcHm7q4NSOERmDJjyiLelwwR/Tebto2SdOsjAABtHM2UKJwI13Eimh3xzxtFC3EV0Urc3/8AE0FVZEI3TYNAmqbRFIZG0U3b4L4B")
+size_override = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 1, 1, 2, 2, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_boad6"]
+_data = {
+&"A": SubResource("Animation_g6k8r"),
+&"none": SubResource("Animation_qjkh3")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_oul6g")
@@ -118,3 +190,41 @@ metadata/_aseprite_wizard_source_file_hash_ = "cdd662e5f251a2371a981c8c6ed74814"
 [node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_kqu6x")
+
+[node name="ActionableIndicator" type="Node2D" parent="."]
+position = Vector2(0, -21)
+
+[node name="Sprite2D" type="Sprite2D" parent="ActionableIndicator"]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_rkbax")
+hframes = 2
+vframes = 2
+frame = 1
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "ActionableIndicator/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://player/assets/buttons.aseprite",
+"source_uid": 5041434704196821678
+}
+metadata/_aseprite_wizard_source_file_hash_ = "6313caf22c161e48b7124f096e872045"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ActionableIndicator"]
+libraries = {
+&"": SubResource("AnimationLibrary_boad6")
+}
