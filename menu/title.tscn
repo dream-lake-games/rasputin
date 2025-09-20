@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://nwq8bre0xe1r"]
+[gd_scene load_steps=11 format=4 uid="uid://nwq8bre0xe1r"]
 
+[ext_resource type="Script" uid="uid://sc8mv8op5y7r" path="res://menu/title.gd" id="1_8kt04"]
 [ext_resource type="Shader" uid="uid://6gckm1ap0qtr" path="res://menu/title_rain.gdshader" id="1_ckp2h"]
 [ext_resource type="Script" uid="uid://ctbl7r6arogmp" path="res://menu/title_anim.gd" id="2_ckp2h"]
 
@@ -64,6 +65,7 @@ _data = {
 }
 
 [node name="Title" type="Node2D"]
+script = ExtResource("1_8kt04")
 
 [node name="Bg" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

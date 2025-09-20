@@ -87,18 +87,18 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 	if resource == null:
 		assert(false, DMConstants.translate(&"runtime.no_resource"))
 	if resource.lines.size() == 0:
-		assert(false, DMConstants.translate(&"runtime.no_content").format({ file_path = resource.resource_path }))
+		assert(false, DMConstants.translate(&"runtime.no_content").format({file_path = resource.resource_path}))
 
 	# Inject any "using" states into the game_states
 	for state_name in resource.using_states:
 		var autoload = Engine.get_main_loop().root.get_node_or_null(state_name)
 		if autoload == null:
-			printerr(DMConstants.translate(&"runtime.unknown_autoload").format({ autoload = state_name }))
+			printerr(DMConstants.translate(&"runtime.unknown_autoload").format({autoload = state_name}))
 		else:
 			extra_game_states = [autoload] + extra_game_states
 
 	# Inject "self" into the extra game states.
-	extra_game_states = [{ "self": resource }] + extra_game_states
+	extra_game_states = [ {"self": resource}] + extra_game_states
 
 	# Get the line data
 	var dialogue: DialogueLine = await get_line(resource, key, extra_game_states)
@@ -164,7 +164,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 		passed_title.emit(resource.titles.find_key(key))
 
 	if not resource.lines.has(key):
-		assert(false, DMConstants.translate(&"errors.key_not_found").format({ key = key }))
+		assert(false, DMConstants.translate(&"errors.key_not_found").format({key = key}))
 
 	var data: Dictionary = resource.lines.get(key)
 
@@ -336,7 +336,7 @@ func get_resolved_line_data(data: Dictionary, extra_game_states: Array = []) -> 
 				body_else = bits[1]
 			var condition: Dictionary = compilation.extract_condition("if " + condition_raw, false, 0)
 			# If the condition fails then use the else of ""
-			if not await _check_condition({ condition = condition }, extra_game_states):
+			if not await _check_condition({condition = condition}, extra_game_states):
 				body = body_else
 			replacements.append({
 				start = conditional.get_start(),
@@ -401,13 +401,13 @@ func create_resource_from_text(text: String) -> Resource:
 	var result: DMCompilerResult = DMCompiler.compile_string(text, "")
 
 	if result.errors.size() > 0:
-		printerr(DMConstants.translate(&"runtime.errors").format({ count = result.errors.size() }))
+		printerr(DMConstants.translate(&"runtime.errors").format({count = result.errors.size()}))
 		for error in result.errors:
 			printerr(DMConstants.translate(&"runtime.error_detail").format({
 				line = error.line_number + 1,
 				message = DMConstants.get_error_message(error.error)
 			}))
-		assert(false, DMConstants.translate(&"runtime.errors_see_details").format({ count = result.errors.size() }))
+		assert(false, DMConstants.translate(&"runtime.errors_see_details").format({count = result.errors.size()}))
 
 	var resource: DialogueResource = DialogueResource.new()
 	resource.using_states = result.using_states
@@ -432,7 +432,7 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 
 ## Show the configured dialogue balloon
 func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:
-	var balloon_path: String = DMSettings.get_setting(DMSettings.BALLOON_PATH, _get_example_balloon_path())
+	var balloon_path: String = "res://dialogue/balloon/balloon.tscn"
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_example_balloon_path()
 	return show_dialogue_balloon_scene(balloon_path, resource, title, extra_game_states)
@@ -709,7 +709,6 @@ func _check_case_value(match_value: Variant, data: Dictionary, extra_game_states
 	return false
 
 
-
 # Make a change to game state or run a method
 func _mutate(mutation: Dictionary, extra_game_states: Array, is_inline_mutation: bool = false) -> void:
 	var expression: Array[Dictionary] = mutation.expression
@@ -719,7 +718,7 @@ func _mutate(mutation: Dictionary, extra_game_states: Array, is_inline_mutation:
 		var args: Array = await _resolve_each(expression[0].value, extra_game_states)
 		match expression[0].function:
 			&"wait", &"Wait":
-				mutated.emit(mutation.merged({ is_inline = is_inline_mutation }))
+				mutated.emit(mutation.merged({is_inline = is_inline_mutation}))
 				await Engine.get_main_loop().create_timer(float(args[0])).timeout
 				return
 
@@ -730,7 +729,7 @@ func _mutate(mutation: Dictionary, extra_game_states: Array, is_inline_mutation:
 	# Or pass through to the resolver
 	else:
 		if not _mutation_contains_assignment(mutation.expression) and not is_inline_mutation:
-			mutated.emit(mutation.merged({ is_inline = is_inline_mutation }))
+			mutated.emit(mutation.merged({is_inline = is_inline_mutation}))
 
 		if mutation.get("is_blocking", true):
 			await _resolve(mutation.expression.duplicate(true), extra_game_states)
@@ -779,7 +778,7 @@ func _get_state_value(property: String, extra_game_states: Array):
 
 	var expression = Expression.new()
 	if expression.parse(property) != OK:
-		assert(false, DMConstants.translate(&"runtime.invalid_expression").format({ expression = property, error = expression.get_error_text() }))
+		assert(false, DMConstants.translate(&"runtime.invalid_expression").format({expression = property, error = expression.get_error_text()}))
 
 	# Warn about possible name collisions
 	_warn_about_state_name_collisions(property, extra_game_states)
@@ -808,7 +807,7 @@ func _get_state_value(property: String, extra_game_states: Array):
 			if class_data.get(&"class") == property:
 				return load(class_data.path).new()
 
-	show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found").format({ property = property, states = _get_state_shortcut_names(extra_game_states) }))
+	show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found").format({property = property, states = _get_state_shortcut_names(extra_game_states)}))
 
 
 # Print warnings for top-level state name collisions.
@@ -852,7 +851,7 @@ func _warn_about_state_name_collisions(target_key: String, extra_game_states: Ar
 					break
 
 	if states_with_key.size() > 1:
-		push_warning(DMConstants.translate(&"runtime.top_level_states_share_name").format({ states = ", ".join(states_with_key), key = target_key }))
+		push_warning(DMConstants.translate(&"runtime.top_level_states_share_name").format({states = ", ".join(states_with_key), key = target_key}))
 
 
 # Set a value on the current scene or game state
@@ -867,9 +866,9 @@ func _set_state_value(property: String, value, extra_game_states: Array) -> void
 			return
 
 	if property.to_snake_case() != property:
-		show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found_missing_export").format({ property = property, states = _get_state_shortcut_names(extra_game_states) }))
+		show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found_missing_export").format({property = property, states = _get_state_shortcut_names(extra_game_states)}))
 	else:
-		show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found").format({ property = property, states = _get_state_shortcut_names(extra_game_states) }))
+		show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found").format({property = property, states = _get_state_shortcut_names(extra_game_states)}))
 
 
 # Get the list of state shortcut names
@@ -937,7 +936,7 @@ func _resolve(tokens: Array, extra_game_states: Array):
 					tokens.remove_at(i - 1)
 					i -= 2
 				else:
-					show_error_for_missing_state_value(DMConstants.translate(&"runtime.method_not_callable").format({ method = function_name, object = str(caller.value) }))
+					show_error_for_missing_state_value(DMConstants.translate(&"runtime.method_not_callable").format({method = function_name, object = str(caller.value)}))
 			else:
 				var found: bool = false
 				match function_name:
@@ -1050,7 +1049,7 @@ func _resolve(tokens: Array, extra_game_states: Array):
 						token.type = DMConstants.TOKEN_VALUE
 						token.value = value[index]
 					else:
-						show_error_for_missing_state_value(DMConstants.translate(&"runtime.key_not_found").format({ key = str(index), dictionary = token.variable }))
+						show_error_for_missing_state_value(DMConstants.translate(&"runtime.key_not_found").format({key = str(index), dictionary = token.variable}))
 			elif typeof(value) == TYPE_ARRAY:
 				if tokens.size() > i + 1 and tokens[i + 1].type == DMConstants.TOKEN_ASSIGNMENT:
 					# If the next token is an assignment then we need to leave this as a reference
@@ -1063,7 +1062,7 @@ func _resolve(tokens: Array, extra_game_states: Array):
 						token.type = DMConstants.TOKEN_VALUE
 						token.value = value[index]
 					else:
-						show_error_for_missing_state_value(DMConstants.translate(&"runtime.array_index_out_of_bounds").format({ index = index, array = token.variable }))
+						show_error_for_missing_state_value(DMConstants.translate(&"runtime.array_index_out_of_bounds").format({index = index, array = token.variable}))
 
 		elif token.type == DMConstants.TOKEN_DICTIONARY_NESTED_REFERENCE:
 			var dictionary: Dictionary = tokens[i - 1]
@@ -1084,7 +1083,7 @@ func _resolve(tokens: Array, extra_game_states: Array):
 						tokens.remove_at(i)
 						i -= 1
 					else:
-						show_error_for_missing_state_value(DMConstants.translate(&"runtime.key_not_found").format({ key = str(index), dictionary = value }))
+						show_error_for_missing_state_value(DMConstants.translate(&"runtime.key_not_found").format({key = str(index), dictionary = value}))
 			elif typeof(value) == TYPE_ARRAY:
 				if tokens.size() > i + 1 and tokens[i + 1].type == DMConstants.TOKEN_ASSIGNMENT:
 					# If the next token is an assignment then we need to leave this as a reference
@@ -1100,7 +1099,7 @@ func _resolve(tokens: Array, extra_game_states: Array):
 						tokens.remove_at(i)
 						i -= 1
 					else:
-						show_error_for_missing_state_value(DMConstants.translate(&"runtime.array_index_out_of_bounds").format({ index = index, array = value }))
+						show_error_for_missing_state_value(DMConstants.translate(&"runtime.array_index_out_of_bounds").format({index = index, array = value}))
 
 		elif token.type == DMConstants.TOKEN_ARRAY:
 			token.type = DMConstants.TOKEN_VALUE
@@ -1267,7 +1266,7 @@ func _resolve(tokens: Array, extra_game_states: Array):
 					lhs.value[lhs.key] = value
 				&"array":
 					show_error_for_missing_state_value(
-						DMConstants.translate(&"runtime.array_index_out_of_bounds").format({ index = lhs.key, array = lhs.value }),
+						DMConstants.translate(&"runtime.array_index_out_of_bounds").format({index = lhs.key, array = lhs.value}),
 						lhs.key >= lhs.value.size()
 					)
 					value = _apply_operation(token.value, lhs.value[lhs.key], tokens[i + 1].value)
@@ -1453,7 +1452,7 @@ func _resolve_thing_method(thing, method: String, args: Array):
 		var method_info: Dictionary = _get_method_info_for(thing, method, args)
 		var method_args: Array = method_info.args
 		if method_info.flags & METHOD_FLAG_VARARG == 0 and method_args.size() < args.size():
-			assert(false, DMConstants.translate(&"runtime.expected_n_got_n_args").format({ expected = method_args.size(), method = method, received = args.size()}))
+			assert(false, DMConstants.translate(&"runtime.expected_n_got_n_args").format({expected = method_args.size(), method = method, received = args.size()}))
 		for i in range(0, min(method_args.size(), args.size())):
 			var m: Dictionary = method_args[i]
 			var to_type: int = typeof(args[i])
@@ -1471,7 +1470,7 @@ func _resolve_thing_method(thing, method: String, args: Array):
 						to_type = TYPE_PACKED_VECTOR3_ARRAY
 					_:
 						if m.hint_string != "":
-							assert(false, DMConstants.translate(&"runtime.unsupported_array_type").format({ type = m.hint_string}))
+							assert(false, DMConstants.translate(&"runtime.unsupported_array_type").format({type = m.hint_string}))
 			if typeof(args[i]) != to_type:
 				args[i] = convert(args[i], to_type)
 

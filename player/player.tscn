@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bl2gmmfd17ai4" path="res://player/player.gd" id="1_oul6g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
-size = Vector2(12, 12)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(1, 1)
 
@@ -52,12 +49,11 @@ _data = {
 _data = PackedByteArray("AAADAAUAAAABAAAAPAAAACgAAABWAQAAUklGRk4BAABXRUJQVlA4TEEBAAAvO8AJEEegqG0bqPzZlEt3o5j2GhM1jaRA9+HfAKKwQEeJBDVtG0Fdy59MoXS8F8LpVgFBkf+jBQB1XhXY9KtW5/7NLAADjiRJbiN48Gmtyzk19umn8AkwTw/cHVD0v7FR1GdH9N+R20aOJJ8m7XLDK7rzLmIjrfqDLfpxswxqj6Ws50Zqj6VIZhrocI+l1OpZEmNLqblcOMeWUs323cgWKSVP0WNs8TQz86TY4o9uphuMLf44SU8cW/TUbKDTbNmp2UixZfc+8yaMLaFmQbHlQxp3Uk+1lojou39hERtp1R9s0Y/v+wvtsZT13EjtsRTJTAMd7rGUWj1LYmwpNZcL59hSqtm+G9kipeQpeowtnmZmnhRb/NHNdIOxxR8n6Ylji56aDXSaLTs1Gym27N5n3oSxJdQsKLZ8RMRO6rsLWQcA")
 size_override = Vector2(60, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
+size = Vector2(12, 9)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_oul6g")
-
-[node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_kqu6x")
 
 [node name="RoomCollisionArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -118,3 +114,7 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 4610725646908542347
 }
 metadata/_aseprite_wizard_source_file_hash_ = "cdd662e5f251a2371a981c8c6ed74814"
+
+[node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_kqu6x")

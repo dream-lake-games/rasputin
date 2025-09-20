@@ -51,7 +51,7 @@ func _unhandled_input(_event):
 
 	input_vector = new_input_vector
 
-	if Input.is_action_just_pressed(InputActions.START):
+	if Input.is_action_just_pressed(InputActions.A):
 		var actionables = actionable_area.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()

@@ -14,13 +14,19 @@ shader_parameter/COLOR_THREE = Color(0.537255, 0.368627, 0.756863, 1)
 shader_parameter/COLOR_FOUR = Color(0.172549, 0.0862745, 0.290196, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_pjrb6"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_53q0u")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(160, 144)
+render_target_update_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_53q0u")

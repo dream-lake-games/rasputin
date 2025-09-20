@@ -9,6 +9,6 @@ signal on_action_ended()
 
 func action():
 	on_action_started.emit()
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
+	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 	await DialogueManager.dialogue_ended
 	on_action_ended.emit()

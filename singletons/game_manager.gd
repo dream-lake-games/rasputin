@@ -3,7 +3,8 @@ extends Node
 const TRANSITION_DURATION: float = 0.4
 
 var current_room: Node2D = null
-var is_transitioning: bool = false
+var is_transitioning_scenes: bool = false
+var is_transitioning_rooms: bool = false
 
 func _get_room_bounds(room: Node2D) -> Rect2:
 	assert(room.is_in_group("rooms"), "Node must be in 'rooms' group")
@@ -24,10 +25,10 @@ func _enter_room(node: Node2D) -> void:
 	_transition_to_room(node, new_bounds)
 
 func _transition_to_room(node: Node2D, new_bounds: Rect2) -> void:
-	if is_transitioning:
+	if is_transitioning_rooms:
 		return
 		
-	is_transitioning = true
+	is_transitioning_rooms = true
 	var start_bounds: Rect2 = _get_room_bounds(current_room)
 	current_room = node
 	
@@ -49,34 +50,37 @@ func _transition_to_room(node: Node2D, new_bounds: Rect2) -> void:
 	
 	CameraManager.set_bounds(new_bounds)
 	Engine.time_scale = 1.0
-	is_transitioning = false
+	is_transitioning_rooms = false
 
 func mark_player_in_room(node: Node2D) -> void:
-	if is_transitioning:
+	if is_transitioning_rooms:
 		return
 	if node == current_room:
 		return
 	_enter_room(node)
 
 func transition_to_scene(scene: PackedScene, dark_time: float = 0.5):
-	var main = get_node("/root/Main")
-	assert(main != null, "uh oh")
+	if not is_transitioning_scenes:
+		is_transitioning_scenes = true
+		var main = get_node("/root/Main")
+		assert(main != null, "uh oh")
 
-	var step_time = 0.1
+		var step_time = 0.1
 
-	await get_tree().create_timer(step_time).timeout
-	ShaderDeltaManager.delta = 1
-	await get_tree().create_timer(step_time).timeout
-	ShaderDeltaManager.delta = 2
-	await get_tree().create_timer(step_time).timeout
-	ShaderDeltaManager.delta = 3
-	await get_tree().create_timer(step_time).timeout
+		await get_tree().create_timer(step_time).timeout
+		ShaderDeltaManager.delta = 1
+		await get_tree().create_timer(step_time).timeout
+		ShaderDeltaManager.delta = 2
+		await get_tree().create_timer(step_time).timeout
+		ShaderDeltaManager.delta = 3
+		await get_tree().create_timer(step_time).timeout
 
-	await get_tree().create_timer(dark_time).timeout
-	main._set_main_scene(scene)
+		await get_tree().create_timer(dark_time).timeout
+		main._set_main_scene(scene)
 
-	ShaderDeltaManager.delta = 2
-	await get_tree().create_timer(step_time).timeout
-	ShaderDeltaManager.delta = 1
-	await get_tree().create_timer(step_time).timeout
-	ShaderDeltaManager.delta = 0
+		ShaderDeltaManager.delta = 2
+		await get_tree().create_timer(step_time).timeout
+		ShaderDeltaManager.delta = 1
+		await get_tree().create_timer(step_time).timeout
+		ShaderDeltaManager.delta = 0
+		is_transitioning_scenes = false

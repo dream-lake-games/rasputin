@@ -42,6 +42,8 @@ var responses: Array = []:
 					item.show()
 				else:
 					item = Button.new()
+					item.alignment = HORIZONTAL_ALIGNMENT_LEFT
+					item.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 				item.name = "Response%d" % get_child_count()
 				if not response.is_allowed:
 					item.name = item.name + &"Disallowed"
@@ -55,6 +57,7 @@ var responses: Array = []:
 					item.text = response.text
 
 				item.set_meta("response", response)
+				item.set_meta("original_text", response.text)
 
 				add_child(item)
 
@@ -118,8 +121,15 @@ func _configure_focus() -> void:
 
 		item.mouse_entered.connect(_on_response_mouse_entered.bind(item))
 		item.gui_input.connect(_on_response_gui_input.bind(item, item.get_meta("response")))
+		item.focus_entered.connect(_on_response_focus_entered.bind(item))
+		item.focus_exited.connect(_on_response_focus_exited.bind(item))
 
-	items[0].grab_focus()
+	# Set initial selection indicator
+	if items.size() > 0:
+		var first_item = items[0]
+		var original_text = first_item.get_meta("original_text", first_item.text)
+		first_item.text = "> " + original_text
+		first_item.grab_focus()
 
 
 #endregion
@@ -142,6 +152,20 @@ func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 	elif event.is_action_pressed(&"ui_accept" if next_action.is_empty() else next_action) and item in get_menu_items():
 		get_viewport().set_input_as_handled()
 		response_selected.emit(response)
+
+
+func _on_response_focus_entered(item: Control) -> void:
+	if "Disallowed" in item.name: return
+	
+	var original_text = item.get_meta("original_text", item.text)
+	item.text = "> " + original_text
+
+
+func _on_response_focus_exited(item: Control) -> void:
+	if "Disallowed" in item.name: return
+	
+	var original_text = item.get_meta("original_text", item.text)
+	item.text = original_text
 
 
 #endregion

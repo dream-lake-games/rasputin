@@ -9,4 +9,4 @@ y_sort_enabled = true
 [node name="Outside1" parent="." instance=ExtResource("1_4ur12")]
 
 [node name="Player" parent="." instance=ExtResource("2_gomor")]
-position = Vector2(112, 48)
+position = Vector2(48, 82)
