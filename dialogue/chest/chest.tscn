@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://dn0hsjupobpw3"]
+[gd_scene load_steps=11 format=4 uid="uid://dn0hsjupobpw3"]
 
 [ext_resource type="PackedScene" uid="uid://chl7uw5qavl8y" path="res://dialogue/actionable.tscn" id="1_agy02"]
 [ext_resource type="Script" uid="uid://de6qot8tnpk1g" path="res://dialogue/chest/chest.gd" id="1_bbmqp"]
-[ext_resource type="Resource" uid="uid://dh4o5jik8b42n" path="res://dialogue/play.dialogue" id="2_vvkul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvkul"]
 size = Vector2(16, 14)
@@ -93,7 +92,6 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_vvkul")
 
 [node name="Actionable" parent="." instance=ExtResource("1_agy02")]
-dialogue_resource = ExtResource("2_vvkul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
 rotation = 1.5708

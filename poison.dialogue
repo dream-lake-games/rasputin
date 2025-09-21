@@ -1,0 +1,10 @@
+~ start
+if has_acquired_poison
+	=> END
+CHEST: You found poison!
+CHEST: How lucky...
+set has_acquired_poison = true
+if has_acquired_cake
+	You poisoned the cake!
+	do open_doors("KillBarrier")
+=> END

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://gamewin_unique"]
+
+[ext_resource type="Texture2D" path="res://gameover/gamewin.png" id="1_gamewin"]
+[ext_resource type="Script" path="res://gameover/gamewin.gd" id="2_gamewin_script"]
+
+[node name="Gamewin" type="Node2D"]
+script = ExtResource("2_gamewin_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 72)
+texture = ExtResource("1_gamewin")

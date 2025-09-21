@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://exa4sdcrenvy"
+path="res://.godot/imported/rug_guy.dialogue-574d1d6fd0a374120463af21efdf3841.tres"
+
+[deps]
+
+source_file="res://dialogue/palace/rug_guy.dialogue"
+dest_files=["res://.godot/imported/rug_guy.dialogue-574d1d6fd0a374120463af21efdf3841.tres"]
+
+[params]
+
+defaults=true

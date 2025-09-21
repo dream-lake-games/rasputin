@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bbq7xnwib3me3"
+path="res://.godot/imported/rasputin.dialogue-23da31259fdd7a4b5e7a0385659647a6.tres"
+
+[deps]
+
+source_file="res://dialogue/palace/rasputin.dialogue"
+dest_files=["res://.godot/imported/rasputin.dialogue-23da31259fdd7a4b5e7a0385659647a6.tres"]
+
+[params]
+
+defaults=true

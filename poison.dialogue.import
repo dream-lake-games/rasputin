@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ca64o1w0fek0f"
+path="res://.godot/imported/poison.dialogue-767d177b777f62a6c0547e029ff88d6d.tres"
+
+[deps]
+
+source_file="res://poison.dialogue"
+dest_files=["res://.godot/imported/poison.dialogue-767d177b777f62a6c0547e029ff88d6d.tres"]
+
+[params]
+
+defaults=true

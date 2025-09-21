@@ -1,0 +1,94 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bxjr1ohqgx7yv"]
+
+[ext_resource type="Texture2D" uid="uid://bybq1qmgbkcb2" path="res://areas/palace/palace_detail_tileset.png" id="1_3ur0o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6sx8x"]
+texture = ExtResource("1_3ur0o")
+0:0/0 = 0
+0:0/0/z_index = -1
+0:0/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+&"type": 0
+}
+1:0/0 = 0
+1:0/0/z_index = -1
+1:0/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+&"type": 0
+}
+2:0/0 = 0
+2:0/0/z_index = -1
+2:0/0/metadata/_better_terrain = {
+4: [0],
+8: [0],
+&"type": 0
+}
+0:1/0 = 0
+0:1/0/z_index = -1
+0:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+12: [0],
+&"type": 0
+}
+1:1/0 = 0
+1:1/0/z_index = -1
+1:1/0/metadata/_better_terrain = {
+0: [0],
+4: [0],
+8: [0],
+12: [0],
+&"type": 0
+}
+2:1/0 = 0
+2:1/0/z_index = -1
+2:1/0/metadata/_better_terrain = {
+4: [0],
+8: [0],
+12: [0],
+&"type": 0
+}
+0:2/0 = 0
+0:2/0/z_index = -1
+0:2/0/metadata/_better_terrain = {
+0: [0],
+12: [0],
+&"type": 0
+}
+1:2/0 = 0
+1:2/0/z_index = -1
+1:2/0/metadata/_better_terrain = {
+0: [0],
+8: [0],
+12: [0],
+&"type": 0
+}
+2:2/0 = 0
+2:2/0/z_index = -1
+2:2/0/metadata/_better_terrain = {
+8: [0],
+12: [0],
+&"type": 0
+}
+3:0/next_alternative_id = 3
+3:0/0 = 0
+3:0/0/custom_data_0 = &"FireSpitter"
+
+[resource]
+custom_data_layer_0/name = "Entity"
+custom_data_layer_0/type = 21
+custom_data_layer_1/name = "Cycle"
+custom_data_layer_1/type = 2
+sources/0 = SubResource("TileSetAtlasSource_6sx8x")
+metadata/_better_terrain = {
+&"decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
+&"path": "res://addons/better-terrain/icons/Decoration.svg"
+}],
+&"terrains": [["rug", Color(0.108793, 0.988903, 0.571703, 1), 0, [], {
+&"path": ""
+}]],
+&"version": "0.2"
+}

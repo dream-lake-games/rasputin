@@ -1,0 +1,11 @@
+~ start
+if not has_seen_useless_chest:
+	CHEST: You found an empty chest!
+	- Yay...
+	set has_seen_useless_chest = true
+else:
+	% CHEST: Still empty...
+	%
+		CHEST: Oh? What's that?
+		CHEST: Nope, still empty.
+=> END

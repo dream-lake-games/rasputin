@@ -10,6 +10,6 @@ signal on_action_ended()
 func action():
 	on_action_started.emit()
 	if dialogue_resource != null:
-		DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
+		DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start, GameManager.dialogue_states)
 		await DialogueManager.dialogue_ended
 	on_action_ended.emit()

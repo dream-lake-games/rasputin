@@ -101,7 +101,17 @@ func update_animation():
 		animation_player.play("idle")
 
 func update_actionable_indicator():
+	var should_show_indicator = false
+	
+	# Check for actionables
 	if actionable_area.has_overlapping_areas() and show_actioning_indicator:
+		should_show_indicator = true
+	
+	# Check for breakable ropes during boss battle
+	if BOSS_BATTLE and is_near_breakable_rope():
+		should_show_indicator = true
+	
+	if should_show_indicator:
 		actionable_indicator_animation_player.play("A")
 	else:
 		actionable_indicator_animation_player.play("none")
@@ -129,11 +139,22 @@ func _process(_delta):
 	pass
 	
 	
+func is_near_breakable_rope() -> bool:
+	if not get_parent():
+		return false
+		
+	for i in range(4):
+		var ropeanchor = get_parent().get_node("Ropeanchor" + str(i + 1))
+		if not ropeanchor.broken:
+			if abs(ropeanchor.position.x - position.x) < 16 and abs(ropeanchor.position.y - position.y) < 16:
+				return true
+	return false
+
 func check_for_ropes():
 	var num_broken = 0
 	
 	for i in range(4):
-		var ropeanchor = get_parent().get_node("Ropeanchor" + str(i+1))
+		var ropeanchor = get_parent().get_node("Ropeanchor" + str(i + 1))
 		if not ropeanchor.broken:
 			if abs(ropeanchor.position.x - position.x) < 16 and abs(ropeanchor.position.y - position.y) < 16:
 				ropeanchor.break_rope()
@@ -168,5 +189,9 @@ func get_hurt():
 	if hurt_frame == 0:
 		health -= 1
 		if health < 1:
+			if BOSS_BATTLE:
+				GameManager.last_scene_before_death = load("res://areas/boss/boss_room.tscn")
+			else:
+				GameManager.last_scene_before_death = load("res://areas/palace/palace.tscn")
 			GameManager.transition_to_scene(load("res://gameover/gameover.tscn"))
 		hurt_frame = 1

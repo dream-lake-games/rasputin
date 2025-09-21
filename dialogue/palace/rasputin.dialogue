@@ -1,0 +1,35 @@
+~ start
+if not has_had_intro_chat_with_rasputin
+	=> intro_chat
+elif not has_acquired_cake
+	=> reminder_chat
+else
+	=> final_chat
+=> END
+~ intro_chat
+RASPUTIN: Friend! Hello. You have came for my [shake rate=20.0 level=5 connected=1]party[/shake], jah?
+RASPUTIN: HUGE problem! No cake!
+RASPUTIN: I see you already have big sharp knife to cut cake.[wait=0.1]
+- Jah... for cake.
+RASPUTIN: Very happy! Kitchen is through rooms on your left.
+do open_doors("ServiceHallwayDoor")
+RASPUTIN: Chop chop!
+set has_had_intro_chat_with_rasputin = true
+=> END
+~ reminder_chat
+RASPUTIN: So... any luck on that cake?
+=> END
+~ final_chat
+RASPUTIN: Ahh, finally!
+RASPUTIN: Let me eat cake!
+YOU:
+- ...
+RASPUTIN: What are you look at?
+RASPUTIN: It good cake. Taste a little like cyanide.
+RASPUTIN: You know when I baby, mother feed me little bits of cyanide accidentally.
+RASPUTIN: I have the tolerance of a god.
+YOU:
+- Of course.
+RASPUTIN: Hey, let me show you my piano room.
+do GameManager.transition_to_scene(load("res://areas/boss/boss_room.tscn"))
+=> END

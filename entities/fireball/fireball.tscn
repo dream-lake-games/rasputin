@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=4 uid="uid://bjlnk6f2fjndf"]
+
+[ext_resource type="Script" uid="uid://fjqgegwmmu4q" path="res://entities/fireball/fireball.gd" id="1_c7fo6"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_8g3y4"]
+_data = PackedByteArray("AAADAAUAAAABAAAAEAAAAAgAAABeAAAAUklGRlYAAABXRUJQVlA4TEkAAAAvD8ABECcgECBUWNfhViBACJJsxpmQgEyprhlj/gOgAfZOUBDJBvVIQIRfAhH0j/XIENF/IUGijSm4Zwr5tmJKnzLZPdgthfwMAA==")
+size_override = Vector2(16, 8)
+
+[sub_resource type="Animation" id="Animation_c7fo6"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tf2p"]
+_data = {
+&"flicker": SubResource("Animation_c7fo6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8g3y4"]
+size = Vector2(5, 6)
+
+[node name="Fireball" type="Area2D"]
+script = ExtResource("1_c7fo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_8g3y4")
+hframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"output_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/fireball/fireball.aseprite",
+"source_uid": 4615646311181266977
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8b77cb593e4c79fafbe7ddba081c7607"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4tf2p")
+}
+speed_scale = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_8g3y4")
