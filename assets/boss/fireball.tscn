@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccyabiyl53mhl"]
+
+[ext_resource type="Script" uid="uid://dmbl7chjfefr3" path="res://assets/boss/fireball.gd" id="1_3srk4"]
+[ext_resource type="Texture2D" uid="uid://rd8wa1djyx1g" path="res://assets/boss/fireball.png" id="1_23ty1"]
+
+[node name="Fireball" type="Node2D"]
+script = ExtResource("1_3srk4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_23ty1")
+vframes = 2

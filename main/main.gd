@@ -12,7 +12,7 @@ func _ready():
 
 	# GameManager.transition_to_scene(load("res://menu/splash.tscn"))
 	# GameManager.transition_to_scene(load("res://areas/outside/outside.tscn"))
-	GameManager.transition_to_scene(load("res://areas/palace/palace.tscn"))
+	GameManager.transition_to_scene(load("res://areas/boss/boss_room.tscn"))
 
 func _process(delta):
 	texture_rect.material.set_shader_parameter("delta", ShaderDeltaManager.delta)

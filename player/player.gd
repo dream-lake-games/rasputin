@@ -11,6 +11,7 @@ const MOVE_SPEED = 86.0
 
 var input_vector: Vector2 = Vector2.ZERO
 var show_actioning_indicator: bool = true
+var BOSS_BATTLE = true
 
 enum Facing {
 	Left,
@@ -71,6 +72,10 @@ func _unhandled_input(_event):
 			show_actioning_indicator = false
 			await actionables[0].action()
 			show_actioning_indicator = true
+			
+	if Input.is_action_just_pressed(InputActions.A):
+		if BOSS_BATTLE:
+			check_for_ropes()
 
 func handle_facing():
 	match facing:
@@ -118,3 +123,26 @@ func on_actionable_indicator_animation_finished(finished: StringName):
 
 func _process(_delta):
 	pass
+	
+	
+func check_for_ropes():
+	var num_broken = 0
+	
+	for i in range(4):
+		var ropeanchor = get_parent().get_node("Ropeanchor" + str(i+1))
+		if not ropeanchor.broken:
+			if abs(ropeanchor.position.x - position.x) < 16 and abs(ropeanchor.position.y - position.y) < 16:
+				ropeanchor.break_rope()
+				num_broken += 1
+		else:
+			num_broken += 1
+	
+	if num_broken == 4:
+		start_piano_fall()
+		
+		
+func start_piano_fall():
+	for i in range(4):
+		get_parent().get_node("Rope" + str(i + 1)).visible = false
+	get_parent().get_node("Piano").start_falling()
+		
