@@ -29,6 +29,9 @@ tile_set = ExtResource("2_ska1t")
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_i03q2")
 
+[node name="Player" parent="." index="5"]
+position = Vector2(8, 72)
+
 [node name="Rope1" type="Sprite2D" parent="." index="6"]
 position = Vector2(8, -24)
 texture = ExtResource("4_kquhn")

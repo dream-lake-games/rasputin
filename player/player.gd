@@ -21,6 +21,9 @@ enum Facing {
 }
 var facing: Facing = Facing.Down
 
+var health = 3
+var hurt_frame = 0
+
 
 func _ready():
 	RoomManager.driver_area = room_collision_area
@@ -107,6 +110,7 @@ func _physics_process(_delta):
 	velocity = input_vector * MOVE_SPEED
 	handle_facing()
 	update_actionable_indicator()
+	handle_hurt()
 
 	move_and_slide()
 	update_animation()
@@ -142,7 +146,27 @@ func check_for_ropes():
 		
 		
 func start_piano_fall():
+	get_parent().boss_alive = false
 	for i in range(4):
 		get_parent().get_node("Rope" + str(i + 1)).visible = false
 	get_parent().get_node("Piano").start_falling()
-		
+
+func handle_hurt():
+	if hurt_frame > 0:
+		hurt_frame += 1
+		if hurt_frame > 70:
+			hurt_frame = 0
+		visible = hurt_frame % 2 == 0
+		if hurt_frame < 15:
+			visible = false
+		elif hurt_frame < 60:
+			visible = (hurt_frame / 4) % 2 == 0
+	else:
+		visible = true
+# called by other things
+func get_hurt():
+	if hurt_frame == 0:
+		health -= 1
+		if health < 1:
+			GameManager.transition_to_scene(load("res://gameover/gameover.tscn"))
+		hurt_frame = 1
