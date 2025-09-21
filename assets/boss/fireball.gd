@@ -1,6 +1,6 @@
 extends Node2D
 
-var start_pos = Vector2(78, 69)
+var start_pos = Vector2(0, 0)
 var movement_vector = Vector2(1,0)
 var f = 0
 var underlying_pos = start_pos

@@ -1,13 +1,23 @@
-[gd_scene load_steps=5 format=4 uid="uid://icy6k6nbup0p"]
+[gd_scene load_steps=14 format=4 uid="uid://icy6k6nbup0p"]
 
 [ext_resource type="PackedScene" uid="uid://b1q7fnxv8bkgy" path="res://areas/base_area.tscn" id="1_2p4n4"]
+[ext_resource type="Script" uid="uid://cudyb64bhk50d" path="res://areas/boss/boss_room.gd" id="2_iexf5"]
 [ext_resource type="TileSet" uid="uid://chfbvlao2we43" path="res://areas/palace/palace_tileset.tres" id="2_ska1t"]
 [ext_resource type="PackedScene" uid="uid://ct0e55yghuqpu" path="res://areas/room_marker.tscn" id="3_ocynv"]
+[ext_resource type="Texture2D" uid="uid://s6orewxom2ab" path="res://assets/boss/rope1.png" id="4_kquhn"]
+[ext_resource type="Texture2D" uid="uid://bqdbfwt1l275a" path="res://assets/boss/rope2.png" id="5_ojrv4"]
+[ext_resource type="Texture2D" uid="uid://b1t3gd6iew2jx" path="res://assets/boss/rope4.png" id="5_ty0m0"]
+[ext_resource type="Texture2D" uid="uid://c20tsmlbh0mu3" path="res://assets/boss/rope3.png" id="6_0o3fy"]
+[ext_resource type="Texture2D" uid="uid://b1wg11bx6lvm0" path="res://assets/boss/rasputin_piano.png" id="6_yv8jl"]
+[ext_resource type="PackedScene" uid="uid://cyjr11h8eo6ke" path="res://assets/boss/ropeanchor.tscn" id="7_ojrv4"]
+[ext_resource type="Script" uid="uid://ct68dbqvannmd" path="res://areas/boss/piano.gd" id="7_ty0m0"]
+[ext_resource type="Texture2D" uid="uid://c7amuc50ubf4w" path="res://assets/boss/rasputin.png" id="11_0o3fy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i03q2"]
 size = Vector2(208, 192)
 
 [node name="BaseArea" instance=ExtResource("1_2p4n4")]
+script = ExtResource("2_iexf5")
 
 [node name="GroundTileMap" parent="." index="0"]
 tile_map_data = PackedByteArray("AAD6//r/AAABAAEAAAD7//r/AAAAAAEAAAD8//r/AAAAAAEAAAD9//r/AAAAAAEAAAD+//r/AAAAAAEAAAD///r/AAAAAAEAAAAAAPr/AAAAAAEAAAABAPr/AAAAAAEAAAACAPr/AAAAAAEAAAADAPr/AAAAAAEAAAAEAPr/AAAAAAEAAAAFAPr/AAAAAAEAAAAGAPr/AAABAAEAAFD6//v/AAAAAAEAAGD7//v/AAAAAAAAAAD8//v/AAADAAAAAAD9//v/AAAEAAAAAAD+//v/AAACAAAAAAD///v/AAAAAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAAEAAAAAAAEAPv/AAABAAAAAAAFAPv/AAADAAAAAAAGAPv/AAAAAAEAAFD6//z/AAAAAAEAAGD7//z/AAAAAAAAAAD8//z/AAADAAAAAAD9//z/AAADAAAAAAD+//z/AAAEAAAAAAD///z/AAABAAAAAAAAAPz/AAAAAAAAAAABAPz/AAACAAAAAAACAPz/AAADAAAAAAADAPz/AAAEAAAAAAAEAPz/AAABAAAAAAAFAPz/AAADAAAAAAAGAPz/AAAAAAEAAFD6//3/AAAAAAEAAGD7//3/AAABAAAAAAD8//3/AAAEAAAAAAD9//3/AAADAAAAAAD+//3/AAAEAAAAAAD///3/AAABAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAADAAAAAAAEAP3/AAACAAAAAAAFAP3/AAAAAAAAAAAGAP3/AAAAAAEAAFD6//7/AAAAAAEAAGD7//7/AAADAAAAAAD8//7/AAADAAAAAAD9//7/AAAEAAAAAAD+//7/AAAEAAAAAAD///7/AAAAAAAAAAAAAP7/AAACAAAAAAABAP7/AAABAAAAAAACAP7/AAADAAAAAAADAP7/AAABAAAAAAAEAP7/AAAEAAAAAAAFAP7/AAACAAAAAAAGAP7/AAAAAAEAAFD6////AAAAAAEAAGD7////AAACAAAAAAD8////AAABAAAAAAD9////AAACAAAAAAD+////AAAEAAAAAAD/////AAAEAAAAAAAAAP//AAAAAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAADAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAGAP//AAAAAAEAAFD6/wAAAAAAAAEAAGD7/wAAAAACAAAAAAD8/wAAAAADAAAAAAD9/wAAAAAEAAAAAAD+/wAAAAACAAAAAAD//wAAAAADAAAAAAAAAAAAAAADAAAAAAABAAAAAAAEAAAAAAACAAAAAAABAAAAAAADAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAACAAAAAAAGAAAAAAAAAAEAAFD6/wEAAAAAAAEAAGD7/wEAAAACAAAAAAD8/wEAAAACAAAAAAD9/wEAAAAEAAAAAAD+/wEAAAAEAAAAAAD//wEAAAACAAAAAAAAAAEAAAACAAAAAAABAAEAAAAAAAAAAAACAAEAAAAEAAAAAAADAAEAAAACAAAAAAAEAAEAAAABAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAEAAFD6/wIAAAAAAAEAAGD7/wIAAAADAAAAAAD8/wIAAAACAAAAAAD9/wIAAAADAAAAAAD+/wIAAAADAAAAAAD//wIAAAABAAAAAAAAAAIAAAADAAAAAAABAAIAAAADAAAAAAACAAIAAAADAAAAAAADAAIAAAABAAAAAAAEAAIAAAADAAAAAAAFAAIAAAADAAAAAAAGAAIAAAAAAAEAAFD6/wMAAAAAAAEAAGD7/wMAAAACAAAAAAD8/wMAAAACAAAAAAD9/wMAAAACAAAAAAD+/wMAAAACAAAAAAD//wMAAAADAAAAAAAAAAMAAAAAAAAAAAABAAMAAAACAAAAAAACAAMAAAABAAAAAAADAAMAAAAAAAAAAAAEAAMAAAADAAAAAAAFAAMAAAABAAAAAAAGAAMAAAAAAAEAAFD6/wQAAAAAAAEAAGD7/wQAAAAAAAAAAAD8/wQAAAABAAAAAAD9/wQAAAAEAAAAAAD+/wQAAAADAAAAAAD//wQAAAAAAAAAAAAAAAQAAAACAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAAEAAAAAAAGAAQAAAAAAAEAAFD6/wUAAAABAAEAAGD7/wUAAAAAAAEAADD8/wUAAAAAAAEAADD9/wUAAAAAAAEAADD+/wUAAAAAAAEAADD//wUAAAAAAAEAADAAAAUAAAAAAAEAADABAAUAAAAAAAEAADACAAUAAAAAAAEAADADAAUAAAAAAAEAADAEAAUAAAAAAAEAADAFAAUAAAAAAAEAADAGAAUAAAABAAEAADA=")
@@ -18,5 +28,42 @@ tile_set = ExtResource("2_ska1t")
 [node name="CollisionShape2D" parent="Rooms/RoomMarker" index="0"]
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_i03q2")
+
+[node name="Rope1" type="Sprite2D" parent="." index="6"]
+position = Vector2(8, -24)
+texture = ExtResource("4_kquhn")
+
+[node name="Rope2" type="Sprite2D" parent="." index="7"]
+position = Vector2(8, -24)
+texture = ExtResource("5_ojrv4")
+
+[node name="Rope3" type="Sprite2D" parent="." index="8"]
+position = Vector2(8, -24)
+texture = ExtResource("6_0o3fy")
+
+[node name="Rope4" type="Sprite2D" parent="." index="9"]
+position = Vector2(8, -24)
+texture = ExtResource("5_ty0m0")
+
+[node name="Piano" type="Sprite2D" parent="." index="10"]
+position = Vector2(8, -24)
+texture = ExtResource("6_yv8jl")
+script = ExtResource("7_ty0m0")
+
+[node name="Ropeanchor1" parent="." index="11" instance=ExtResource("7_ojrv4")]
+position = Vector2(-72, 56)
+
+[node name="Ropeanchor2" parent="." index="12" instance=ExtResource("7_ojrv4")]
+position = Vector2(-56, -40)
+
+[node name="Ropeanchor3" parent="." index="13" instance=ExtResource("7_ojrv4")]
+position = Vector2(72, -40)
+
+[node name="Ropeanchor4" parent="." index="14" instance=ExtResource("7_ojrv4")]
+position = Vector2(88, 56)
+
+[node name="Rasputin" type="Sprite2D" parent="." index="15"]
+position = Vector2(8, 0)
+texture = ExtResource("11_0o3fy")
 
 [editable path="Rooms/RoomMarker"]
