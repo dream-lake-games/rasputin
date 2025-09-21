@@ -29,8 +29,16 @@ func _ready():
 	actionable_indicator_animation_player.animation_finished.connect(on_actionable_indicator_animation_finished)
 	process_priority = -1
 
+func _exit_tree() -> void:
+	if RoomManager.driver_area == room_collision_area:
+		RoomManager.driver_area = null
+
 func _unhandled_input(_event):
 	var new_input_vector = Vector2.ZERO
+
+	if GameManager.is_transitioning_scenes:
+		input_vector = new_input_vector
+		return
 
 	if Input.is_action_pressed(InputActions.LEFT):
 		new_input_vector.x -= 1
@@ -64,30 +72,6 @@ func _unhandled_input(_event):
 			await actionables[0].action()
 			show_actioning_indicator = true
 
-func update_room():
-	var biggest_area = 0
-	var winning_node: Node2D = null
-
-	for area in room_collision_area.get_overlapping_areas():
-		var parent = area.get_parent() as Node2D
-		if !parent.is_in_group("rooms"):
-			continue
-
-		var player_shape = room_collision_area.shape_owner_get_shape(0, 0) as RectangleShape2D
-		var player_rect = player_shape.get_rect()
-		var room_shape = area.shape_owner_get_shape(0, 0) as RectangleShape2D
-		var room_rect = room_shape.get_rect()
-
-		@warning_ignore("unsafe_call_argument")
-		var intersection = player_rect.intersection(room_rect)
-		var overlap_area = intersection.get_area()
-		if overlap_area > biggest_area:
-			biggest_area = overlap_area
-			winning_node = parent
-
-	if winning_node != null:
-		GameManager.mark_player_in_room(winning_node)
-
 func handle_facing():
 	match facing:
 		Facing.Down:
@@ -116,7 +100,6 @@ func update_actionable_indicator():
 
 func _physics_process(_delta):
 	velocity = input_vector * MOVE_SPEED
-	update_room()
 	handle_facing()
 	update_actionable_indicator()
 
