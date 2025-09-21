@@ -11,7 +11,7 @@ const MOVE_SPEED = 86.0
 
 var input_vector: Vector2 = Vector2.ZERO
 var show_actioning_indicator: bool = true
-var BOSS_BATTLE = true
+var BOSS_BATTLE = false
 
 enum Facing {
 	Left,
@@ -141,7 +141,7 @@ func check_for_ropes():
 		else:
 			num_broken += 1
 	
-	if num_broken == 4:
+	if num_broken == 4 and get_parent().boss_alive:
 		start_piano_fall()
 		
 		

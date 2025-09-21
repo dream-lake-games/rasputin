@@ -1,14 +1,16 @@
 extends Node2D
 
-var start_pos = Vector2(0, 0)
 var movement_vector = Vector2(1,0)
 var f = 0
-var underlying_pos = start_pos
+var underlying_pos
 const size = 8
 
-func start(player_pos):
+
+
+func start(start_pos, player_pos):
 	underlying_pos = start_pos
 	movement_vector = (player_pos - underlying_pos).normalized()
+	position = start_pos
 
 func _process(delta):
 	f += delta * 60.0
