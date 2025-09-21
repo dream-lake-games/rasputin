@@ -3,12 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes"
 type="SpriteFrames"
 uid="uid://sunqedbh8oc7"
-path="res://.godot/imported/outdoor-tileset.aseprite-ff5e231ac2717c21501d8b212a5be186.res"
+path="res://.godot/imported/outside_tileset.aseprite-2f75f67af26abab17a03f3d7eb51a8c2.res"
 
 [deps]
 
-source_file="res://areas/assets/outdoor-tileset.aseprite"
-dest_files=["res://.godot/imported/outdoor-tileset.aseprite-ff5e231ac2717c21501d8b212a5be186.res"]
+source_file="res://areas/outside/outside_tileset.aseprite"
+dest_files=["res://.godot/imported/outside_tileset.aseprite-2f75f67af26abab17a03f3d7eb51a8c2.res"]
 
 [params]
 

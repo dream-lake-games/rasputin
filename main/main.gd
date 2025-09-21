@@ -11,8 +11,8 @@ func _ready():
 	DMSettings.set_setting(DMSettings.BALLOON_PATH, "res://dialogue/balloon/balloon.tscn")
 
 	# GameManager.transition_to_scene(load("res://menu/splash.tscn"))
-	GameManager.transition_to_scene(load("res://areas/outside/outside.tscn"))
-	# GameManager.transition_to_scene(load("res://rooms/palace.tscn"))
+	# GameManager.transition_to_scene(load("res://areas/outside/outside.tscn"))
+	GameManager.transition_to_scene(load("res://areas/palace/palace.tscn"))
 
 func _process(delta):
 	texture_rect.material.set_shader_parameter("delta", ShaderDeltaManager.delta)

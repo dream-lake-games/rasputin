@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://r0aq572bm8aj"
+path="res://.godot/imported/palace_tileset.aseprite-0009896f0cc4869016a13c27ee024bed.res"
+
+[deps]
+
+source_file="res://areas/palace/palace_tileset.aseprite"
+dest_files=["res://.godot/imported/palace_tileset.aseprite-0009896f0cc4869016a13c27ee024bed.res"]
+
+[params]
+

@@ -20,3 +20,5 @@ func _process(_delta):
 
 	if overlapping_areas.size() > 0:
 		active_room = overlapping_areas[0]
+	else:
+		active_room = null
