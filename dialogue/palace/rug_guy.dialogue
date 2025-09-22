@@ -1,0 +1,32 @@
+~ start
+if not has_had_intro_rug_chat
+	=> rug_intro_chat
+else
+	=> rug_judgement
+~ rug_intro_chat
+YOU: 
+- Where kitchen?
+RUG GUY: Why, it's right behind me sonny.
+YOU:
+- Great.
+YOU:
+- Can I pass?
+RUG GUY: Only if you can answer my riddle:
+RUG GUY: Which is your favorite rug?
+YOU:
+- A rug's a rug.
+- All of them?
+RUG GUY: Hmmph! Preposterous.
+RUG GUY: Come back when you have a real answer.
+set has_had_intro_rug_chat = true
+=> END
+~ rug_judgement
+if num_rugs_seen < 8
+	RUG GUY: Don't come back until you've had a good long look at every rug in this room.
+else
+	RUG GUY: So... which is your favorite?
+	You:
+	- The rectangle.
+	RUG GUY: A classic! Right this way.
+	set has_answered_rug_riddle = true
+=> END

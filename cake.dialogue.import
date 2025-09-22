@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c3ogguxfbu8ro"
+path="res://.godot/imported/cake.dialogue-9de875cb142dd8374bf23b84fdda1c42.tres"
+
+[deps]
+
+source_file="res://cake.dialogue"
+dest_files=["res://.godot/imported/cake.dialogue-9de875cb142dd8374bf23b84fdda1c42.tres"]
+
+[params]
+
+defaults=true

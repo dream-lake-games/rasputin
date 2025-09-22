@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://du4k33futcqsp"
+path="res://.godot/imported/scared_guy.dialogue-2c03194af347738b3823f4a4e622b994.tres"
+
+[deps]
+
+source_file="res://dialogue/palace/scared_guy.dialogue"
+dest_files=["res://.godot/imported/scared_guy.dialogue-2c03194af347738b3823f4a4e622b994.tres"]
+
+[params]
+
+defaults=true

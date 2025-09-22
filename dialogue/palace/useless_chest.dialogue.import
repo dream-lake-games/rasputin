@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dywia5hrcx0fu"
+path="res://.godot/imported/useless_chest.dialogue-1679ebe1bedd2bfb0f41e0caeac94a14.tres"
+
+[deps]
+
+source_file="res://dialogue/palace/useless_chest.dialogue"
+dest_files=["res://.godot/imported/useless_chest.dialogue-1679ebe1bedd2bfb0f41e0caeac94a14.tres"]
+
+[params]
+
+defaults=true

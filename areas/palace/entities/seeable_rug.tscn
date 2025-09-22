@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://exwawrgsc1x6"]
+
+[ext_resource type="Script" uid="uid://m5lncop54f8t" path="res://areas/palace/seeable_rug.gd" id="1_e6mf0"]
+
+[node name="SeeableRug" type="Area2D"]
+script = ExtResource("1_e6mf0")

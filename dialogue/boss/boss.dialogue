@@ -1,0 +1,7 @@
+~ boss_intro
+RASPUTIN: Careful! Someone seems to have strung up my piano strangely.
+=> END
+
+~ boss_defeated  
+RASPUTIN: [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]*death noises*[/rainbow]
+=> END
